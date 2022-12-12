@@ -1,0 +1,29 @@
+{% extends "noteapp/base.html" %} {% block content %}
+<div id="update-form">
+  {% if messages %} {% for message in messages %}
+  <p class="messages">{{message}}</p>
+  {% endfor %} {% else %}
+  <form action="#" method="POST">
+    {% csrf_token %}
+    <div class="title">
+      <label for="inputText4" class="form-label"><strong>Title:</strong></label>
+      {{form.title}}
+    </div>
+    <br />
+    <div class="content">
+      <label for="exampleFormControlTextarea1" class="form-label"
+        ><strong>Notes:</strong></label
+      >
+      {{form.media}} {{form.body}}
+    </div>
+    <div class="image form-label">      
+      <label for="images" class="form-image"
+        ><strong>Image: </strong></label
+      >{{form.image}}
+    </div>
+    <input type="submit" value="Delete" class="button btn-delete "/>
+    <a href="{% url 'index' %}"><input type="submit" value="Cancel" class="button btn-update" /></a>
+  </form>
+  {% endif %}
+</div>
+{% endblock %}

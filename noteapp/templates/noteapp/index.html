@@ -1,0 +1,46 @@
+{% extends "noteapp/base.html" %} {% load note_extras %} {% block content %} 
+
+<div class="note-container">
+  <a href="{% url 'new_note' %}"><button class="button notes__add" type="button">Add Note</button></a>
+
+  {% for note in notes %}
+
+  <div class="notes__sidebar">
+    <a href="{% url 'update_note' note.id %}">
+      <div class="notes__list">
+        <div class="notes__list-item ">
+          <div class="icon-heading-wrapper">
+          <div class="notes__small-title">{{ note.title }}</div>
+                  <div id="icons">
+                      <a href=" {% url 'update_note' note.id %}">
+                          <span class="span"> <button class=" button btn-update icons"><i
+                                      class="fas fa-pen"></i></button></i></span>
+                      </a>
+
+                      <a href="{% url 'delete_note' note.id %}">
+                          <span class="span"> <button class=" button btn-delete icons"><i
+                              class="fas fa-trash-alt"></i></button></i></span>
+                      </a>
+                  </div>
+          </div>
+          <div class="notes__small-body">
+            {{ note.body|convert_markdown|safe|truncatewords:40 }}
+          </div>
+          <div class="notes__small-updated">{{ note.created_at }}</div>
+          {% if note.image %}
+          <img
+            src="{{note.image.url }}"
+            alt="Note image"
+            class="notes_small_images"
+          />
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  </div>
+
+  {% endfor %} {% endblock %}
+
+</div>
+
+

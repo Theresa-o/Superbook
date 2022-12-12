@@ -1,0 +1,28 @@
+{% extends "noteapp/base.html" %} {% block content %}
+
+<div id="update-form">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="title form-label">
+      <label for="title" class="form-title"
+        ><strong>Title: </strong></label
+      >
+      {{form.title}}
+    </div>
+    <div class="content form-label">
+      <label for="content" class="form-content"
+        ><strong>Note: </strong></label
+      >
+      {{form.media}} {{form.body}}
+    </div>
+    <div class="image form-label">      
+      <label for="images" class="form-image"
+        ><strong>Image: </strong></label
+      >{{form.image}}</div>
+    <div class="center">
+      <input type="submit" class="button form-button" value="Save" />
+    </div>    
+  </form>
+</div>
+
+{% endblock %}
